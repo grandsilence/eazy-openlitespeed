@@ -12,3 +12,13 @@ curl -sS https://raw.githubusercontent.com/grandsilence/eazy-openlitespeed/maste
 ```bash
 wget --no-check-certificate https://raw.githubusercontent.com/grandsilence/eazy-openlitespeed/master/install.sh | bash
 ```
+
+# Configure
+## MySQL
+```bash
+mysql_secure_installation
+```
+## LiteSpeed
+```bash
+litespeed_reset
+```

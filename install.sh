@@ -59,12 +59,5 @@ firewall-cmd --zone=public --add-port=80/tcp --permanent
 firewall-cmd --zone=public --add-port=443/tcp --permanent
 firewall-cmd --reload
 
-# Configuration
-# ------------------------------
 
-# -> MySql
-mysql_secure_installation
-
-# -> Litespeed set admin password
-litespeed_reset
 litespeed restart
