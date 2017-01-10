@@ -57,6 +57,3 @@ firewall-cmd --zone=public --add-port=443/tcp --permanent
 firewall-cmd --reload
 
 /usr/local/lsws/bin/lswsctrl restart
-
-# Reload bashrc
-source ~/.bashrc

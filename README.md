@@ -13,6 +13,11 @@ curl -sS https://raw.githubusercontent.com/grandsilence/eazy-openlitespeed/maste
 wget --no-check-certificate https://raw.githubusercontent.com/grandsilence/eazy-openlitespeed/master/install.sh | bash
 ```
 
+## after
+```bash
+source ~/.bashrc
+```
+
 # Configure
 ## MySQL
 ```bash
