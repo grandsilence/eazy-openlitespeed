@@ -10,11 +10,8 @@ rpm -ivh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el7.noarch.rp
 yum -y install openlitespeed lsphp71 lsphp71-common lsphp71-mysqlnd lsphp71-gd lsphp71-process lsphp71-mbstring lsphp71-xml lsphp71-mcrypt lsphp71-pdo lsphp71-opcache lsphp71-json lsphp71-soap lsphp71-bcmath lsphp71-imap lsphp71-zip
 ln -sf /usr/local/lsws/lsphp71/bin/lsphp /usr/local/lsws/fcgi-bin/lsphp7
 
-litespeed='/usr/local/lsws/bin/lswsctrl'
 echo "alias litespeed='/usr/local/lsws/bin/lswsctrl'" >> ~/.bashrc
-
-litespeed_reset='/usr/local/lsws/admin/misc/admpass.sh'
-echo "alias litespeed-reset='/usr/local/lsws/admin/misc/admpass.sh'" >> ~/.bashrc
+echo "alias litespeed_reset='/usr/local/lsws/admin/misc/admpass.sh'" >> ~/.bashrc
 
 chown -R lsadm:lsadm /usr/local/lsws/conf/*
 # chmod -R 755 /usr/local/lsws/conf/*
@@ -59,7 +56,7 @@ firewall-cmd --zone=public --add-port=80/tcp --permanent
 firewall-cmd --zone=public --add-port=443/tcp --permanent
 firewall-cmd --reload
 
-litespeed restart
+/usr/local/lsws/bin/lswsctrl restart
 
 # Reload bashrc
 source ~/.bashrc
