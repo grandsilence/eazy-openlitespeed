@@ -3,12 +3,12 @@
 * curl / wget
 * Run as root!
 
-# Install via curl
+# Install
+## via curl
 ```bash
 curl -sS https://raw.githubusercontent.com/grandsilence/eazy-openlitespeed/master/install.sh | bash
 ```
-
-# Install via wget
+## via wget
 ```bash
 wget --no-check-certificate https://raw.githubusercontent.com/grandsilence/eazy-openlitespeed/master/install.sh | bash
 ```
@@ -18,7 +18,7 @@ wget --no-check-certificate https://raw.githubusercontent.com/grandsilence/eazy-
 ```bash
 mysql_secure_installation
 ```
-## LiteSpeed
+## OpenLiteSpeed Admin Password
 ```bash
 litespeed_reset
 ```

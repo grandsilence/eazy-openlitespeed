@@ -18,7 +18,7 @@ echo "alias litespeed-reset='/usr/local/lsws/admin/misc/admpass.sh'" >> ~/.bashr
 
 chown -R lsadm:lsadm /usr/local/lsws/conf/*
 # chmod -R 755 /usr/local/lsws/conf/*
-chmod 600 "/usr/local/lsws/password"
+# chmod 600 "/usr/local/lsws/password"
 
 # Install MySql
 # -----------------------------
