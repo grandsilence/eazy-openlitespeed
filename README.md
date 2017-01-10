@@ -1,6 +1,7 @@
 # Requirements
 * CentOS 7
 * curl / wget
+* Run as root!
 
 # Install via curl
 ```bash
