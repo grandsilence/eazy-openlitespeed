@@ -1,59 +1,56 @@
-# Install Base Packages
-# -----------------------------
-yum -y install epel-release wget
+#!/usr/bin/env bash
+# usage: bash -i install_ols
 
+function run_module_error  {
+	echo "ERROR: $1"
+	echo 'Usage of run_module: <module_name|all> <action:help|install|remove|update>'
+	exit 1
+}
 
-# Install Litespeed and PHP 7.1
-# -----------------------------
-# lsphp71-mysql
-rpm -ivh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el7.noarch.rpm
-yum -y install openlitespeed lsphp71 lsphp71-common lsphp71-mysqlnd lsphp71-gd lsphp71-process lsphp71-mbstring lsphp71-xml lsphp71-mcrypt lsphp71-pdo lsphp71-opcache lsphp71-json lsphp71-soap lsphp71-bcmath lsphp71-imap lsphp71-zip
-ln -sf /usr/local/lsws/lsphp71/bin/lsphp /usr/local/lsws/fcgi-bin/lsphp7
+function module_mgr {
+	local MODULE_NAME=$1
+	local MODULE_ACTION=$2
 
-echo "alias litespeed='/usr/local/lsws/bin/lswsctrl'" >> ~/.bashrc
-echo "alias litespeed_reset='/usr/local/lsws/admin/misc/admpass.sh'" >> ~/.bashrc
+	if [ -z $MODULE_NAME ]; then
+		run_module_error 'Empty param <module_name>'
+	fi
 
-chown -R lsadm:lsadm /usr/local/lsws/conf/*
-# chmod -R 755 /usr/local/lsws/conf/*
-# chmod 600 "/usr/local/lsws/password"
+	if [ -z $MODULE_ACTION ]; then
+		run_module_error 'Empty param <action>'
+	fi
 
-# Install MySql
-# -----------------------------
-rpm -ivh http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
-yum -y install mysql-server phpmyadmin
-systemctl start mysqld
+	if [[ $MODULE_ACTION == _* ]]; then
+		run_module_error 'Param <action> starts with low dash (_) which is the dependency file'
+	fi
 
+	local MODULE_PATH=modules/$MODULE_NAME
+	if [[ $MODULE_ACTION == help ]]; then
+		echo "List of actions: (write without .sh and low dash names unavailable)"
+		ls $MODULE_PATH
+		exit 0
+	fi
 
-# Install utilities
-# -----------------------------
-yum -y install git nodejs npm
-npm install -g gulp
+	local MODULE_FILE=$MODULE_PATH/$MODULE_ACTION'.sh'
+	if [ ! -f $MODULE_FILE ]; then
+		run_module_error "Module action-shell not found: $MODULE_FILE"
+	fi
 
-# Install prisma PIL
-yum -y install python-imaging
+	bash -i "$MODULE_FILE"
+}
 
-# PHP 7.1 as default for composer
-PATH="/usr/local/lsws/lsphp71/bin:$PATH"
-echo "# Override PHP CLI to 7.1" >> ~/.bashrc
-echo "PATH=\"/usr/local/lsws/lsphp71/bin:\$PATH\"" >> ~/.bashrc
-echo "export PATH" >> ~/.bashrc
+ARG_MODULE=$1
+ARG_ACTION=$2
 
-# Install composer
-curl -sS https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer
-chmod +x /usr/local/bin/composer
+if [[ $ARG_MODULE == all ]]; then
+	ALL_MODULES=(global_aliases epel utils litespeed litespeed_php71 mysql phpmyadmin node9 node9_utils)
 
+	for MODULE in "${ALL_MODULES[@]}"
+	do
+		echo "With module \"$MODULE\" do $ARG_ACTION..."
+		module_mgr $MODULE $ARG_ACTION
+	done
 
-# Update all packages
-# ------------------------------
-yum -y update
+	exit
+fi
 
-# Firewall
-# ------------------------------
-firewall-cmd --zone=public --add-port=22/tcp --permanent
-firewall-cmd --zone=public --add-port=7080/tcp --permanent
-firewall-cmd --zone=public --add-port=80/tcp --permanent
-firewall-cmd --zone=public --add-port=443/tcp --permanent
-firewall-cmd --reload
-
-/usr/local/lsws/bin/lswsctrl restart
+module_mgr $ARG_MODULE $ARG_ACTION
