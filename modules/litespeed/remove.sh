@@ -5,7 +5,7 @@ yum -y remove openlitespeed
 # Firewall remove
 firewall-cmd --zone=public --remove-port=7080/tcp
 
-read -p "Remove firewall HTTP and HTTPS PROTO?" ANSWER
+read -p "Remove firewall HTTP and HTTPS PROTO? (Y/n)" ANSWER
 if [[ $ANSWER =~ ^[Yy]$ ]]
 then
     firewall-cmd --zone=public --remove-service=http
@@ -20,7 +20,7 @@ rm -f $LOCAL_BIN'/litespeed-reset'
 
 # Litespeed data dir remove
 LSWS_PATH=/usr/local/lsws
-read -p "Remove $LSWS_PATH? " ANSWER
+read -p "Remove $LSWS_PATH? (Y/n)" ANSWER
 if [[ $ANSWER =~ ^[Yy]$ ]]
 then
     rm -rf $LSWS_PATH

@@ -4,7 +4,7 @@ yum -y install mysql-server
 systemctl enable mysqld
 systemctl start mysqld
 
-read -p "Start MYSQL wizard config?" ANSWER
+read -p "Start MYSQL wizard config? (Y/n)" ANSWER
 if [[ $ANSWER =~ ^[Yy]$ ]]
 then
     mysql_secure_installation

@@ -17,7 +17,7 @@ LOCAL_BIN=/usr/local/bin
 ln -s $LSWS_PATH'/bin/lswsctrl' $LOCAL_BIN'/litespeed'
 ln -s $LSWS_PATH'/admin/misc/admpass.sh' $LOCAL_BIN'/litespeed-reset'
 
-read -p "Reset admin litespeed?" ANSWER
+read -p "Reset admin litespeed? (Y/n)" ANSWER
 if [[ $ANSWER =~ ^[Yy]$ ]]
 then
     litespeed-reset
