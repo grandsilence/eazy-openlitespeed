@@ -3,18 +3,19 @@ alias bashrc='vi $HOME/.bashrc; source $HOME/.bashrc;'
 
 # Global edit b
 alias als='cat /etc/profile.d/00-aliases.sh; echo \n\nCMDs: als-update'
-alias als-update='pushd /usr/local/eazy-openlitespeed && git pull && popd && source /etc/profile.d/00-aliases.sh'
+alias als-update='pushd /usr/local/eazy-openlitespeed && git reset HEAD --hard && git pull && popd && source /etc/profile.d/00-aliases.sh'
 
 # Users 
 alias root="su - root"
 alias me="su - me"
 
-# Change dir
+# Litespeed edit and cd
 LS_DIR=/usr/local/lsws
 alias cdls="cd $LS_DIR"
 alias cdwww="cd $LS_DIR/sites"
 alias cdcert="cd $LS_DIR/conf/cert"
 alias cdvhosts="cd $LS_DIR/conf/vhosts"
+alias viconf="vi $LS_DIR/conf/httpd_config.conf"
 
 # Php
 alias art="php artisan"
