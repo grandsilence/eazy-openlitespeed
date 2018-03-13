@@ -52,7 +52,7 @@ function replace_in_target {
 	fi
 
 	# Backup file
-	cp -f $TARGET "$TARGET$BAK_PREFIX"
+	cp -frp $TARGET "$TARGET$BAK_PREFIX"
 
 	# Replace old domain to New
 	sed -i "s/$RX_OLD_DOMAIN/$RX_NEW_DOMAIN/gi" $TARGET

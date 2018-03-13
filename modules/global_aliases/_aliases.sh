@@ -9,6 +9,13 @@ alias als-update='pushd /usr/local/eazy-openlitespeed && git pull && popd && sou
 alias root="su - root"
 alias me="su - me"
 
+# Change dir
+LS_DIR=/usr/local/lsws
+alias cdls="cd $LS_DIR"
+alias cdwww="cd $LS_DIR/sites"
+alias cdcert="cd $LS_DIR/conf/cert"
+alias cdvhosts="cd $LS_DIR/conf/vhosts"
+
 # Php
 alias art="php artisan"
 
@@ -17,9 +24,14 @@ alias gp="git pull"
 alias grh="git reset HEAD --hard"
 
 # Files
+# remove force recurs (for removing dirs)
 alias rmf="rm -rf"
-alias la="ls -la"
-alias lns="ln -s"
+# display list folder with rights
+alias la="ls -la" 
+# make symlink
+alias lns="ln -s" 
+# copy recurs with saving owners and ch rights
+alias cprp="cp -rp"
 
 # Yum
 alias yumi="yum -y install"
