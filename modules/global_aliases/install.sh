@@ -4,7 +4,7 @@ if [ -f $GLOBAL_ALIASES ]; then
 fi
 
 # cp -rf aliases.sh $GLOBAL_ALIASES
-chmod a+rx_aliases.sh 
+chmod a+rx _aliases.sh 
 ln -s _aliases.sh $GLOBAL_ALIASES
 chmod a+rx $GLOBAL_ALIASES
 
