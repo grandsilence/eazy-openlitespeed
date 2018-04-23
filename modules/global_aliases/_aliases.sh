@@ -9,6 +9,24 @@ alias als-update='pushd /usr/local/eazy-openlitespeed && git reset HEAD --hard &
 alias root="su - root"
 alias me="su - me"
 
+# TODO:
+# function fwall {
+# 	if [ "$1" -eq "list"]; then
+# 		firewall-cmd --list-all
+# 		return
+# 	fi
+
+# 	if 	[ "$1" -ne "add" ] && [ "$1" -ne "remove" ] ||
+# 		[ "$2" -ne "port"] && [ "$2" -ne "service"] ||
+# 		[ -z "$3"];
+# 	then
+# 		echo "Usage: <action:add|remove> <type:port|service> <value:80/tcp|http|...>"
+# 		return
+# 	fi
+
+# 	firewall-cmd --zone=public --permanent --${1}-${2}=${3}
+# }
+
 # Litespeed edit and cd
 LS_DIR=/usr/local/lsws
 LS_VHOSTS="$LS_DIR/conf/vhosts"
