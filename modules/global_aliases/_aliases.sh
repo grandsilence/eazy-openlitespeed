@@ -13,6 +13,9 @@ alias me="su - me"
 LS_DIR=/usr/local/lsws
 LS_VHOSTS="$LS_DIR/conf/vhosts"
 
+alias ols="$LS_DIR/bin/lswsctrl"
+alias ols-reset="$LS_DIR/admin/misc/admpass.sh"
+
 alias cdls="cd $LS_DIR"
 alias cdwww="cd $LS_DIR/sites"
 alias cdcert="cd $LS_DIR/conf/cert"
